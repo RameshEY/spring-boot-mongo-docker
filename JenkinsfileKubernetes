@@ -1,5 +1,5 @@
 node{
-     
+    agent {label 'kubetcat'}
     stage('SCM Checkout'){
         git credentialsId: 'GIT_CREDENTIALS', url:  'https://github.com/MithunTechnologiesDevOps/spring-boot-mongo-docker.git',branch: 'master'
     }
