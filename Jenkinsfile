@@ -5,7 +5,7 @@ environment {
      registryCredential = 'dockerhub'
      dockerImage = ''
 }
-agent {label 'kubetcat'}
+agent any
 	
 	
  
