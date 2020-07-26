@@ -1,6 +1,11 @@
 pipeline {
 
 agent {label 'kubetcat'}
+	
+	environment {
+        //be sure to replace "ianp5uk" with your own Docker Hub username
+        DOCKER_IMAGE_NAME = "testdockerramesh/spring-boot-mongo
+    }
  
   stages {
 
@@ -14,7 +19,7 @@ agent {label 'kubetcat'}
 	
     stage('Build Docker Image') {
       steps {
-          sh 'docker build -t testdockerramesh/spring-boot-mongo .'
+          app = docker.build(DOCKER_IMAGE_NAME)
          
       }
     }
