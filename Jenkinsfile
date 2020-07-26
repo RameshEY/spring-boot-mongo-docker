@@ -36,7 +36,7 @@ pipeline {
     stage('Deploy App') {
       steps {
         script {
-          kubernetesDeploy(configs: "mytcat.yaml", kubeconfigId: "mykubeconfig")
+          kubernetesDeploy(configs: "springBootMongo.yml, kubeconfigId: "mykubeconfig")
         }
       }
     }
