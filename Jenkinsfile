@@ -1,11 +1,13 @@
 pipeline {
 
+environment {
+     registry = "testdockerramesh/spring-boot-mongo"
+     registryCredential = 'dockerhub'
+     dockerImage = ''
+}
 agent {label 'kubetcat'}
 	
-	environment {
-        //be sure to replace "ianp5uk" with your own Docker Hub username
-        DOCKER_IMAGE_NAME = "testdockerramesh/spring-boot-mongo"
-    }
+	
  
   stages {
 
@@ -15,11 +17,17 @@ agent {label 'kubetcat'}
       }
     }
 
-  
+    stage('Build and Test Application') {
+            steps{
+                sh 'chmod +x mvnw'
+                sh './mvnw clean install'
+            }
+      }
 	
     stage('Build Docker Image') {
       steps {
-          app = docker.build(DOCKER_IMAGE_NAME)
+	  dockerImage = docker.build registry
+         
          
       }
     }
