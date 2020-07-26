@@ -1,7 +1,7 @@
 node{
-   
+    agent {label 'kubetcat'}
     stage('SCM Checkout'){
-        git credentialsId: 'GIT_CREDENTIALS', url:  'https://github.com/MithunTechnologiesDevOps/spring-boot-mongo-docker.git',branch: 'master'
+        git credentialsId: 'GIT_CREDENTIALS', url:  'https://github.com/RameshEY/spring-boot-mongo-docker.git',branch: 'master'
     }
     
     stage(" Maven Clean Package"){
@@ -22,15 +22,16 @@ node{
         }
         sh 'docker push testdockerramesh/spring-boot-mongo'
      }
-     
-     stage("Deploy To Kuberates Cluster"){
-       kubernetesDeploy(
-         configs: 'springBootMongo.yml', 
-         kubeconfigId: 'mykubeconfig',
-         enableConfigSubstitution: true
-        )
-     }
 	 
+	 stage('Deploy App') {
+      steps {
+        script {
+          kubernetesDeploy(configs: "springBootMongo.yml", kubeconfigId: "mykubeconfig")
+        }
+      }
+    }
+     
+     	 
 	  /**
       stage("Deploy To Kuberates Cluster"){
         sh 'kubectl apply -f pringBootMongo.yml'
