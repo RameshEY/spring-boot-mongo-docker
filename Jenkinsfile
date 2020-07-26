@@ -19,24 +19,15 @@ agent {label 'kubetcat'}
 
     
 
-stage('Building Docker image') {
-      steps{
-        script {
-          dockerImage = docker.build registry + ":$BUILD_NUMBER"
-        }
-      }
-    } 
-    
-	
-	stage('Push Docker Image') {
+stage('Deploy App') {
       steps {
-          withCredentials([string(credentialsId: 'DOKCER_HUB_PASSWORD', variable: 'DOKCER_HUB_PASSWORD')]) {
-          sh "docker login -u testdockerramesh -p ${DOKCER_HUB_PASSWORD}"
+        script {
+          kubernetesDeploy(configs: "springBootMongo.yml", kubeconfigId: "mykubeconfig")
         }
-        sh 'docker push testdockerramesh/spring-boot-mongo'
-         
       }
     }
+	
+	
    
 
   }
