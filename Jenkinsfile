@@ -23,14 +23,15 @@ agent {label 'kubetcat'}
                 sh './mvnw clean install'
             }
       }
-	
-    stage('Build Docker Image') {
-      steps {
-	  dockerImage = docker.build registry
-         
-         
+
+stage('Building Docker image') {
+      steps{
+        script {
+          dockerImage = docker.build registry + ":$BUILD_NUMBER"
+        }
       }
-    }
+    } 
+    
 	
 	stage('Push Docker Image') {
       steps {
