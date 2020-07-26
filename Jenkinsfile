@@ -33,13 +33,7 @@ pipeline {
          
       }
     }
-    stage('Deploy App') {
-      steps {
-        script {
-          kubernetesDeploy(configs: "springBootMongo.yml, kubeconfigId: "mykubeconfig")
-        }
-      }
-    }
+   
 
   }
 
