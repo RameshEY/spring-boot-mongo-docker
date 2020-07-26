@@ -4,7 +4,7 @@ agent {label 'kubetcat'}
 	
 	environment {
         //be sure to replace "ianp5uk" with your own Docker Hub username
-        DOCKER_IMAGE_NAME = "testdockerramesh/spring-boot-mongo
+        DOCKER_IMAGE_NAME = "testdockerramesh/spring-boot-mongo"
     }
  
   stages {
