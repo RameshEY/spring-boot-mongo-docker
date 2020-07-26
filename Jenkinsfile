@@ -11,9 +11,7 @@ pipeline {
 
    stage('Maven Clean Package') {
       steps {
-         def mavenHome =  tool name: "Maven-3.6.1", type: "maven"
-         def mavenCMD = "${mavenHome}/bin/mvn"
-         sh "${mavenCMD} clean package"
+         mvn clean install
       }
     }
 	
