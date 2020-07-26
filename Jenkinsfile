@@ -10,11 +10,7 @@ agent {label 'kubetcat'}
       }
     }
 
-   stage('Maven Clean Package') {
-      steps {
-         sh 'mvn -B -V -U -e clean install'
-      }
-    }
+  
 	
     stage('Build Docker Image') {
       steps {
