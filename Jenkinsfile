@@ -19,8 +19,8 @@ agent {label 'kubetcat'}
 
     stage('Build and Test Application') {
             steps{
-                sh 'chmod +x mvnw'
-                sh './mvnw clean install'
+               
+                sh './mvn clean install'
             }
       }
 
