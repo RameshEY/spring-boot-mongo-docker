@@ -17,12 +17,7 @@ agent {label 'kubetcat'}
       }
     }
 
-    stage('Build and Test Application') {
-            steps{
-               
-                sh './mvn clean install'
-            }
-      }
+    
 
 stage('Building Docker image') {
       steps{
